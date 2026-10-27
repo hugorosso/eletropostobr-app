@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eletroposto BR by EnergyClub — protótipo do app</title>
+<meta name="description" content="Protótipo navegável do app Eletroposto BR by EnergyClub, para simular a navegação em celular.">
+<meta name="theme-color" content="#04271f">
+<link rel="icon" type="image/svg+xml" href="app/assets/icone-app-escuro.svg">
+<link rel="stylesheet" href="app/tokens.css">
+<style>
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  height: 100dvh;
+  display: flex;
+  overflow: hidden;
+  background: var(--verde-noite);
+  color: var(--branco);
+  font-family: var(--font-sans);
+}
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--verde-claro); outline-offset: 2px; }
+
+/* painel lateral */
+.painel {
+  flex: none;
+  width: 360px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px 24px 24px;
+  border-right: 1px solid rgba(197, 227, 214, 0.16);
+  background: var(--verde-noite);
+}
+.marca { display: flex; align-items: center; gap: 12px; }
+.marca img { flex: none; width: 48px; height: 48px; display: block; }
+.eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 14px; letter-spacing: 0.14em; color: var(--verde-claro); }
+.marca h1 { margin: 4px 0 0; font-family: var(--font-display); font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--branco); }
+.acoes { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 18px;
+  border: 1.5px solid rgba(197, 227, 214, 0.45); border-radius: 999px;
+  background: transparent; color: var(--branco);
+  font-size: 13px; line-height: 18px; font-weight: 700; white-space: nowrap; cursor: pointer;
+}
+.btn:hover { background: rgba(255, 255, 255, 0.08); }
+.btn svg { flex: none; }
+.dica { margin: 0; font-size: 13px; line-height: 19px; color: var(--texto-sobre-floresta); }
+#lista { display: flex; flex-direction: column; gap: 16px; }
+.grupo h2 { margin: 0 0 4px; font-size: 13px; line-height: 18px; font-weight: 800; color: var(--verde-claro); }
+.grupo ul { list-style: none; margin: 0; padding: 0; }
+.item {
+  display: block; width: 100%; min-height: 44px; padding: 8px 12px;
+  border: 0; border-radius: 12px; background: transparent;
+  color: var(--texto-sobre-floresta); text-align: left;
+  font-size: 14px; line-height: 20px; font-weight: 600; cursor: pointer;
+}
+.item:hover { background: rgba(255, 255, 255, 0.07); }
+.item[aria-current="true"] { background: rgba(78, 235, 139, 0.16); color: var(--branco); font-weight: 800; }
+.rodape { margin: 0; font-size: 12px; line-height: 16px; color: var(--texto-sobre-floresta); }
+.fechar { display: none; }
+
+/* palco */
+.palco {
+  flex: 1 1 auto; min-width: 0; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.aparelho {
+  flex: none;
+  padding: 12px;
+  border: 1.5px solid rgba(197, 227, 214, 0.3);
+  border-radius: 56px;
+  background: #07130f;
+}
+.tela { position: relative; overflow: hidden; border-radius: 44px; background: var(--surface); }
+.tela iframe {
+  position: absolute; left: 0; top: 0;
+  width: 390px; height: 844px; border: 0;
+  transform-origin: 0 0;
+  background: var(--surface);
+}
+
+/* barra superior (só no celular) */
+.barra { display: none; }
+
+@media (max-width: 820px) {
+  body { flex-direction: column; }
+  .barra {
+    flex: none; display: flex; align-items: center; gap: 8px;
+    padding: 4px 12px; padding-top: calc(4px + env(safe-area-inset-top));
+    border-bottom: 1px solid rgba(197, 227, 214, 0.16);
+    background: var(--verde-noite);
+  }
+  .barra .btn { min-height: 44px; padding: 0 14px; }
+  .barra .esp { flex: 1 1 auto; }
+  .painel {
+    position: fixed; inset: 0; z-index: 20; width: auto; height: auto;
+    border-right: 0;
+    visibility: hidden; transform: translateY(100%);
+    transition: transform 0.2s ease, visibility 0s linear 0.2s;
+  }
+  .painel.aberto { visibility: visible; transform: none; transition: transform 0.2s ease; }
+  .fechar { display: inline-flex; align-self: flex-start; }
+  .palco { flex: 1 1 auto; height: auto; padding: 12px; }
+}
+@media (max-width: 520px) {
+  .palco { padding: 0; }
+  .aparelho { padding: 0; border: 0; border-radius: 0; background: none; }
+  .tela { border-radius: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .painel { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <button type="button" class="btn" id="abrirLista" aria-controls="painel" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>Telas
+  </button>
+  <span class="esp"></span>
+  <button type="button" class="btn" id="voltarB">Voltar</button>
+  <button type="button" class="btn" id="reiniciarB">Reiniciar</button>
+</header>
+
+<aside class="painel" id="painel" aria-label="Lista de telas do protótipo">
+  <button type="button" class="btn fechar" id="fechar">Fechar lista</button>
+  <div class="marca">
+    <img src="app/assets/icone-app-escuro.svg" alt="">
+    <div>
+      <div class="eyebrow">PROTÓTIPO NAVEGÁVEL</div>
+      <h1>Eletroposto BR by EnergyClub</h1>
+    </div>
+  </div>
+  <div class="acoes">
+    <button type="button" class="btn" id="voltar">Voltar</button>
+    <button type="button" class="btn" id="reiniciar">Reiniciar</button>
+  </div>
+  <p class="dica">Toque na tela do celular como em um app. Para saltar para qualquer tela, escolha na lista.</p>
+  <nav id="lista" aria-label="Telas"></nav>
+  <p class="rodape">Valores entre colchetes, como [150] kW, são provisórios.</p>
+</aside>
+
+<noscript><p style="padding:24px">Este protótipo precisa de JavaScript para funcionar.</p></noscript>
+<main class="palco" id="palco">
+  <div class="aparelho" id="aparelho">
+    <div class="tela" id="telaBox">
+      <iframe id="tela" title="Protótipo do app Eletroposto BR by EnergyClub" src="about:blank"></iframe>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var TELAS = [{"arquivo": "abertura.dc.html", "titulo": "A1 · Abertura", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "Main.dc.html", "titulo": "A2 · Mapa (visitante)", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "estacao-visitante.dc.html", "titulo": "A3 · Estação (visitante)", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "entrar-para-continuar.dc.html", "titulo": "A4 · Entre para continuar", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "filtros.dc.html", "titulo": "A5 · Filtros do mapa", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "conta-visitante.dc.html", "titulo": "A6 · Conta (visitante)", "grupo": "A · Visitante: explorar sem conta"}, {"arquivo": "entrar.dc.html", "titulo": "B1 · Entrar", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "cadastro.dc.html", "titulo": "B2 · Criar conta (pessoa física)", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "cadastro-pj.dc.html", "titulo": "B2 · Criar conta (pessoa jurídica)", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "cadastro-erro.dc.html", "titulo": "Estado · Criar conta com erros", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "recuperar.dc.html", "titulo": "Recuperar senha · 1. E-mail ou celular", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "codigo.dc.html", "titulo": "Recuperar senha · 2. Código", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "nova-senha.dc.html", "titulo": "Recuperar senha · 3. Nova senha", "grupo": "B · Entrar ou criar conta"}, {"arquivo": "mapa-logado.dc.html", "titulo": "C1 · Mapa (com conta)", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "estacao.dc.html", "titulo": "C2 · Estação", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "ler-qr.dc.html", "titulo": "C3 · Ler QR Code do carregador", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "iniciar.dc.html", "titulo": "C4 · Iniciar recarga", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "recarga.dc.html", "titulo": "C5 · Recarga em andamento", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "recibo.dc.html", "titulo": "C6 · Recibo", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "filtros-logado.dc.html", "titulo": "Filtros do mapa (com conta)", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "reservar.dc.html", "titulo": "Reserva · 1. Reservar ponto", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "ler-qr-erro.dc.html", "titulo": "Estado · QR Code não lido", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "iniciar-pagamento.dc.html", "titulo": "Estado · Trocar forma de pagamento", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "em-breve.dc.html", "titulo": "Estado · Estação em breve", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "reserva.dc.html", "titulo": "Reserva · 2. Ponto reservado", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "carregador-codigo.dc.html", "titulo": "Estado · Digitar o código do carregador", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "avisar-abrir.dc.html", "titulo": "Aviso · 1. Avisar quando abrir", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "reserva-encerrada.dc.html", "titulo": "Reserva · 3. Tempo esgotado", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "avisar-abrir-confirmado.dc.html", "titulo": "Aviso · 2. Aviso combinado", "grupo": "C · Com conta: mapa, reserva e recarga"}, {"arquivo": "carteira.dc.html", "titulo": "D1 · Carteira", "grupo": "D · Com conta: carteira"}, {"arquivo": "saldo.dc.html", "titulo": "D2 · Adicionar saldo", "grupo": "D · Com conta: carteira"}, {"arquivo": "pix.dc.html", "titulo": "D3 · Pagar com Pix", "grupo": "D · Com conta: carteira"}, {"arquivo": "cartao.dc.html", "titulo": "D4 · Cartão de crédito", "grupo": "D · Com conta: carteira"}, {"arquivo": "conta.dc.html", "titulo": "E1 · Conta", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "notificacoes.dc.html", "titulo": "E2 · Notificações", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "ajuda.dc.html", "titulo": "E3 · Ajuda e suporte", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "sobre.dc.html", "titulo": "E4 · Sobre o Eletroposto BR", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "termos.dc.html", "titulo": "E5 · Termos e privacidade", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "termos-conteudo.dc.html", "titulo": "E6 · Termos de uso (conteúdo)", "grupo": "E · Com conta: conta e informações"}, {"arquivo": "privacidade-conteudo.dc.html", "titulo": "E7 · Privacidade (conteúdo)", "grupo": "E · Com conta: conta e informações"}];
+  var INICIO = 'abertura.dc.html';
+  var W = 390, H = 844;
+
+  var frame = document.getElementById('tela');
+  var box = document.getElementById('telaBox');
+  var aparelho = document.getElementById('aparelho');
+  var palco = document.getElementById('palco');
+  var painel = document.getElementById('painel');
+  var lista = document.getElementById('lista');
+  var abrir = document.getElementById('abrirLista');
+
+  /* lista de telas, por grupo */
+  var grupoAtual = null, ul = null;
+  TELAS.forEach(function (t) {
+    if (t.grupo !== grupoAtual) {
+      grupoAtual = t.grupo;
+      var sec = document.createElement('section');
+      sec.className = 'grupo';
+      var h = document.createElement('h2');
+      h.textContent = t.grupo;
+      ul = document.createElement('ul');
+      sec.appendChild(h); sec.appendChild(ul);
+      lista.appendChild(sec);
+    }
+    var li = document.createElement('li');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'item';
+    b.setAttribute('data-arq', t.arquivo);
+    b.textContent = t.titulo;
+    b.addEventListener('click', function () { ir(t.arquivo); fecharLista(); });
+    li.appendChild(b); ul.appendChild(li);
+  });
+
+  function existe(arq) { return TELAS.some(function (t) { return t.arquivo === arq; }); }
+  function ir(arq) { frame.src = 'app/' + arq; }
+
+  function arquivoAtual() {
+    try { return frame.contentWindow.location.pathname.split('/').pop() || null; }
+    catch (e) { return null; }
+  }
+
+  var ultimo = null;
+  function marca(arq) {
+    if (!arq || arq === ultimo) return;
+    ultimo = arq;
+    var itens = lista.querySelectorAll('.item');
+    for (var i = 0; i < itens.length; i++) {
+      var on = itens[i].getAttribute('data-arq') === arq;
+      if (on) itens[i].setAttribute('aria-current', 'true'); else itens[i].removeAttribute('aria-current');
+      if (on && !painel.classList.contains('aberto') && itens[i].scrollIntoView) {
+        try { itens[i].scrollIntoView({ block: 'nearest' }); } catch (e) {}
+      }
+    }
+    var tela = TELAS.filter(function (t) { return t.arquivo === arq; })[0];
+    document.title = (tela ? tela.titulo + ' — ' : '') + 'Eletroposto BR by EnergyClub (protótipo)';
+    try { history.replaceState(null, '', '#' + arq.replace(/\.dc\.html$/, '')); } catch (e) {}
+  }
+  frame.addEventListener('load', function () { marca(arquivoAtual()); });
+  setInterval(function () { marca(arquivoAtual()); }, 400);
+
+  /* ações */
+  function voltar() { try { frame.contentWindow.history.back(); } catch (e) { history.back(); } }
+  function reiniciar() { ultimo = null; ir(INICIO); fecharLista(); }
+  document.getElementById('voltar').addEventListener('click', voltar);
+  document.getElementById('voltarB').addEventListener('click', voltar);
+  document.getElementById('reiniciar').addEventListener('click', reiniciar);
+  document.getElementById('reiniciarB').addEventListener('click', reiniciar);
+
+  function abrirLista() { painel.classList.add('aberto'); abrir.setAttribute('aria-expanded', 'true'); }
+  function fecharLista() { painel.classList.remove('aberto'); abrir.setAttribute('aria-expanded', 'false'); }
+  abrir.addEventListener('click', abrirLista);
+  document.getElementById('fechar').addEventListener('click', fecharLista);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharLista(); });
+
+  /* escala: o celular de 390 × 844 cabe no espaço disponível */
+  function px(v) { return parseFloat(v) || 0; }
+  function ajusta() {
+    var ps = getComputedStyle(palco), as = getComputedStyle(aparelho);
+    var extraW = px(as.paddingLeft) + px(as.paddingRight) + px(as.borderLeftWidth) + px(as.borderRightWidth);
+    var extraH = px(as.paddingTop) + px(as.paddingBottom) + px(as.borderTopWidth) + px(as.borderBottomWidth);
+    var dispW = palco.clientWidth - px(ps.paddingLeft) - px(ps.paddingRight) - extraW;
+    var dispH = palco.clientHeight - px(ps.paddingTop) - px(ps.paddingBottom) - extraH;
+    var s = Math.max(0.3, Math.min(dispW / W, dispH / H, 1.25));
+    box.style.width = Math.floor(W * s) + 'px';
+    box.style.height = Math.floor(H * s) + 'px';
+    frame.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', ajusta);
+  window.addEventListener('orientationchange', ajusta);
+  ajusta();
+
+  /* primeira tela: #estacao abre direto na estação; sem hash, começa pela abertura */
+  var h = (location.hash || '').replace(/^#/, '');
+  var inicial = h && existe(h + '.dc.html') ? h + '.dc.html' : INICIO;
+  ir(inicial);
+})();
+</script>
+</body>
+</html>

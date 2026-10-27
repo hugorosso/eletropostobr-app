@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Termos e privacidade</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<a href="conta.dc.html" aria-label="Voltar para a conta" style="position: absolute; left: 16px; top: 16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 76px; display: flex; flex-direction: column; gap: 16px">
+
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">Termos e privacidade</h1>
+
+<div role="tablist" aria-label="Documentos" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; box-sizing: border-box; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-raised)">
+<button type="button" role="tab" aria-selected="{{ehTermos}}" onClick="{{irTermos}}" style="height: 44px; padding: 0; border: 0; border-radius: 999px; background: {{fundoTermos}}; color: {{corTermos}}; font-family: var(--font-sans); font-size: 14px; font-weight: 700; cursor: pointer">Termos de uso</button>
+<button type="button" role="tab" aria-selected="{{ehPrivacidade}}" onClick="{{irPrivacidade}}" style="height: 44px; padding: 0; border: 0; border-radius: 999px; background: {{fundoPrivacidade}}; color: {{corPrivacidade}}; font-family: var(--font-sans); font-size: 14px; font-weight: 700; cursor: pointer">Privacidade</button>
+</div>
+
+<div style="font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--ink-muted)">Versão [x.x] · atualizada em [dd/mm/aaaa]</div>
+
+<section aria-label="{{rotuloLista}}" style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{topicos}}" as="t" hint-placeholder-count="6">
+<a href="{{t.href}}" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; box-sizing: border-box; padding: 0 14px; border-top: {{t.borda}}; color: var(--heading); text-decoration: none">
+<span style="flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 20px; font-weight: 700">{{t.titulo}}</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--ink-muted)"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</sc-for>
+</section>
+
+<sc-if value="{{ehPrivacidade}}" hint-placeholder-val="{{false}}">
+<section aria-labelledby="seus-dados" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="seus-dados" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">SEUS DADOS</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<button type="button" style="display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; box-sizing: border-box; padding: 0 14px; border: 0; background: transparent; color: var(--heading); font-family: var(--font-sans); text-align: left; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent-text)"><path d="M12 4v11"></path><path d="M7.5 11L12 15.5 16.5 11"></path><path d="M5 19.5h14"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 20px; font-weight: 700">Baixar meus dados</span>
+</button>
+<button type="button" style="display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; box-sizing: border-box; padding: 0 14px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--danger); font-family: var(--font-sans); text-align: left; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 7h14"></path><path d="M9.5 7V4.5h5V7"></path><path d="M6.5 7l.8 12.5h9.4L17.5 7"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 20px; font-weight: 700">Excluir minha conta</span>
+</button>
+</div>
+</section>
+</sc-if>
+
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; bottom: 24px; padding-top: 14px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--ink-muted)">Termos aceitos em [dd/mm/aaaa]</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const aba = (this.state && this.state.aba) ? this.state.aba : 'termos';
+const ehTermos = aba === 'termos';
+const linha = '1px solid var(--line)';
+const termos = ['Quem pode usar o app', 'Cadastro e conta', 'Recargas e pagamentos', 'Reserva de ponto de recarga','Saldo da carteira', 'Responsabilidades', 'Alterações destes termos'];
+const privacidade = ['Quais dados coletamos', 'Para que usamos seus dados', 'Com quem compartilhamos', 'Seus direitos como titular', 'Fale com o encarregado de dados'];
+const lista = ehTermos ? termos : privacidade;
+return {
+theme: this.props.theme ?? 'light',
+ehTermos: ehTermos,
+ehPrivacidade: !ehTermos,
+rotuloLista: ehTermos ? 'Tópicos dos termos de uso' : 'Tópicos da política de privacidade',
+fundoTermos: ehTermos ? 'var(--selected)' : 'transparent',
+corTermos: ehTermos ? 'var(--on-selected)' : 'var(--ink)',
+fundoPrivacidade: ehTermos ? 'transparent' : 'var(--selected)',
+corPrivacidade: ehTermos ? 'var(--ink)' : 'var(--on-selected)',
+irTermos: () => this.setState({ aba: 'termos' }),
+irPrivacidade: () => this.setState({ aba: 'privacidade' }),
+topicos: lista.map((titulo, i) => ({ titulo: titulo, href: ehTermos ? 'termos-conteudo.dc.html' : 'privacidade-conteudo.dc.html', borda: i === 0 ? 'none' : linha }))
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pagar com Pix</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<a href="saldo.dc.html" aria-label="Voltar e mudar o valor" style="position: absolute; left: 16px; top: 16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 72px; display: flex; flex-direction: column">
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">Pague com Pix</h1>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px">
+<span style="font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -0.04em; color: var(--heading)">R$ [50,00]</span>
+<x-import component-from-global-scope="EletropostoBR.Pill" tone="em-uso">Expira em [09:59]</x-import>
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 14px">
+<div role="img" aria-label="QR Code do Pix (ilustrativo)" style="box-sizing: border-box; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--branco)">
+<svg width="200" height="200" viewBox="0 0 29 29" shape-rendering="crispEdges" aria-hidden="true" style="display: block">
+<path fill="#04271f" d="M2 2h7v1h-7zM10 2h2v1h-2zM13 2h1v1h-1zM15 2h2v1h-2zM18 2h1v1h-1zM20 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h4v1h-4zM15 3h2v1h-2zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM11 4h1v1h-1zM13 4h1v1h-1zM15 4h4v1h-4zM20 4h1v1h-1zM22 4h3v1h-3zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM16 5h3v1h-3zM20 5h1v1h-1zM22 5h3v1h-3zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM11 6h2v1h-2zM14 6h2v1h-2zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h3v1h-3zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM14 7h1v1h-1zM16 7h2v1h-2zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h7v1h-7zM10 9h1v1h-1zM12 9h1v1h-1zM17 9h1v1h-1zM4 10h1v1h-1zM7 10h2v1h-2zM10 10h1v1h-1zM15 10h2v1h-2zM18 10h5v1h-5zM24 10h3v1h-3zM3 11h2v1h-2zM10 11h3v1h-3zM15 11h4v1h-4zM21 11h4v1h-4zM6 12h1v1h-1zM8 12h1v1h-1zM12 12h3v1h-3zM16 12h11v1h-11zM4 13h4v1h-4zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h4v1h-4zM19 13h2v1h-2zM23 13h1v1h-1zM25 13h1v1h-1zM5 14h4v1h-4zM12 14h2v1h-2zM20 14h1v1h-1zM22 14h5v1h-5zM4 15h1v1h-1zM9 15h5v1h-5zM17 15h1v1h-1zM20 15h1v1h-1zM25 15h2v1h-2zM3 16h1v1h-1zM6 16h3v1h-3zM11 16h3v1h-3zM16 16h1v1h-1zM20 16h1v1h-1zM22 16h2v1h-2zM3 17h1v1h-1zM6 17h2v1h-2zM9 17h2v1h-2zM12 17h3v1h-3zM16 17h2v1h-2zM20 17h1v1h-1zM25 17h2v1h-2zM2 18h2v1h-2zM5 18h2v1h-2zM8 18h1v1h-1zM10 18h1v1h-1zM14 18h1v1h-1zM16 18h7v1h-7zM11 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM22 19h2v1h-2zM2 20h7v1h-7zM11 20h1v1h-1zM15 20h4v1h-4zM20 20h1v1h-1zM22 20h4v1h-4zM2 21h1v1h-1zM8 21h1v1h-1zM12 21h1v1h-1zM15 21h1v1h-1zM18 21h1v1h-1zM22 21h2v1h-2zM25 21h1v1h-1zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM12 22h2v1h-2zM15 22h8v1h-8zM24 22h1v1h-1zM26 22h1v1h-1zM2 23h1v1h-1zM4 23h3v1h-3zM8 23h1v1h-1zM10 23h2v1h-2zM14 23h1v1h-1zM18 23h3v1h-3zM22 23h3v1h-3zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM10 24h2v1h-2zM15 24h2v1h-2zM18 24h2v1h-2zM23 24h1v1h-1zM25 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM10 25h2v1h-2zM14 25h2v1h-2zM17 25h7v1h-7zM25 25h1v1h-1zM2 26h7v1h-7zM10 26h5v1h-5zM17 26h2v1h-2zM20 26h1v1h-1zM22 26h1v1h-1zM25 26h1v1h-1z"></path>
+</svg>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; min-height: 52px; margin-top: 14px; box-sizing: border-box; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--ink)">[código Pix copia e cola]</span>
+</div>
+<button type="button" class="ebr-btn ebr-btn--outline ebr-btn--block" onClick="{{copiar}}" style="height: 48px; margin-top: 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{icone1}}"></path><path d="{{icone2}}"></path></svg>
+<span aria-live="polite">{{rotuloCopiar}}</span>
+</button>
+
+<section aria-labelledby="como" style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px">
+<h2 id="como" style="margin: 0 0 4px; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">COMO PAGAR</h2>
+<sc-for list="{{passos}}" as="p" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 40px">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; background: var(--secondary); color: var(--on-secondary); font-family: var(--font-display); font-size: 14px; font-weight: 800">{{p.n}}</span>
+<span style="font-size: 13px; line-height: 19px; color: var(--ink)">{{p.texto}}</span>
+</div>
+</sc-for>
+</section>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--primary ebr-btn--block" href="carteira.dc.html" style="height: 48px; text-decoration: none">Já fiz o pagamento</a>
+<a href="saldo.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 4px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--accent-text); text-decoration: underline">Cancelar</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const copiado = !!(this.state && this.state.copiado);
+return {
+theme: this.props.theme ?? 'light',
+rotuloCopiar: copiado ? 'Código copiado' : 'Copiar código',
+icone1: copiado ? 'M5 12.5l4.5 4.5L19 7.5' : 'M10 9h8.5A1.5 1.5 0 0 1 20 10.5V19a1.5 1.5 0 0 1-1.5 1.5H10A1.5 1.5 0 0 1 8.5 19v-8.5A1.5 1.5 0 0 1 10 9z',
+icone2: copiado ? '' : 'M15.5 9V5.5A1.5 1.5 0 0 0 14 4H5.5A1.5 1.5 0 0 0 4 5.5V14a1.5 1.5 0 0 0 1.5 1.5H8.5',
+copiar: () => this.setState({ copiado: true }),
+passos: [
+{ n: '1', texto: 'Abra o app do seu banco e escolha pagar com Pix.' },
+{ n: '2', texto: 'Leia o QR Code ou cole o código copiado.' },
+{ n: '3', texto: 'Confirme o valor e o pagamento. O saldo aparece na Carteira.' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

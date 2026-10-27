@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Avisar quando abrir</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; align-items: center; gap: 12px; height: 44px">
+<a href="em-breve.dc.html" aria-label="Voltar" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">Avisar quando abrir</h1>
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 84px; display: flex; flex-direction: column; gap: 20px">
+
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink)">Escolha como quer saber que a estação abriu.</p>
+
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 72px; box-sizing: border-box; padding: 0 14px">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 14px; background: var(--surface-tint); color: var(--accent-text)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg></span>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-family: var(--font-display); font-size: 15px; line-height: 20px; font-weight: 700; color: var(--heading)">Estação [nome]</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">[Endereço], [cidade]</span>
+</span>
+<x-import component-from-global-scope="EletropostoBR.Pill" tone="em-uso">Em breve</x-import>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; box-sizing: border-box; padding: 0 14px; border-top: 1px solid var(--line)">
+<span style="font-size: 14px; line-height: 21px; color: var(--ink-muted)">Abertura prevista</span>
+<span style="font-family: var(--font-mono); font-size: 14px; line-height: 21px; font-weight: 500; color: var(--heading)">[MÊS/ANO]</span>
+</div>
+</div>
+
+<section aria-labelledby="como-avisar" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="como-avisar" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">COMO AVISAR</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{canais}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; align-items: flex-start; gap: 12px; box-sizing: border-box; padding: 14px 16px; border-radius: var(--radius-tile); background: var(--surface-tint)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px; color: var(--accent-text)"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg>
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink)">Para mudar depois, vá em Conta, Notificações.</p>
+</div>
+
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--primary ebr-btn--block" href="avisar-abrir-confirmado.dc.html" style="height: 48px; text-decoration: none">Confirmar aviso</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const padrao = { app: true, email: false };
+const estado = (this.state && this.state.on) ? this.state.on : padrao;
+const linha = '1px solid var(--line)';
+const item = (id, titulo, sub, primeiro) => {
+const on = !!estado[id];
+return {
+titulo: titulo,
+sub: sub,
+on: on,
+borda: primeiro ? 'none' : linha,
+trilho: on ? 'var(--selected)' : 'var(--line-strong)',
+botao: on ? 'var(--on-selected)' : 'var(--surface-raised)',
+posicao: on ? '24px' : '4px',
+alternar: () => {
+const prox = Object.assign({}, estado);
+prox[id] = !on;
+this.setState({ on: prox });
+}
+};
+};
+return {
+theme: this.props.theme ?? 'light',
+canais: [
+item('app', 'Notificação no app', 'No celular, assim que a estação abrir.', true),
+item('email', 'E-mail', '[email@exemplo.com.br]', false)
+]
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Carteira</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 24px; display: flex; flex-direction: column; gap: 24px">
+
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">Carteira</h1>
+
+<section aria-label="Saldo" style="box-sizing: border-box; padding: 18px 20px; border-radius: var(--radius-card); background: var(--gradient-floresta)">
+<div style="font-family: var(--font-mono); font-size: 12px; line-height: 16px; letter-spacing: 0.14em; color: var(--verde-claro)">SALDO DISPONÍVEL</div>
+<div style="margin-top: 4px; font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.04em; color: var(--branco)">R$ [0,00]</div>
+<a class="ebr-btn ebr-btn--primary ebr-btn--sm ebr-btn--block" href="saldo.dc.html" style="margin-top: 14px; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Adicionar saldo</a>
+</section>
+
+<section aria-labelledby="formas" style="display: flex; flex-direction: column; gap: 10px">
+<h2 id="formas" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">FORMAS DE PAGAMENTO</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 64px; box-sizing: border-box; padding: 0 14px">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--surface-tint); color: var(--accent-text)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="12" rx="2.5"></rect><path d="M3.5 10.5h17M7 15h3"></path></svg></span>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">Cartão final [0000]</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">[Bandeira] · vence em [00/00]</span>
+</span>
+<x-import component-from-global-scope="EletropostoBR.Pill" tone="disponivel">Principal</x-import>
+</div>
+</div>
+<a class="ebr-btn ebr-btn--outline ebr-btn--block" href="cartao.dc.html" style="height: 48px; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Adicionar cartão de crédito</a>
+</section>
+
+<section aria-labelledby="historico" style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 id="historico" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">HISTÓRICO</h2>
+<button type="button" style="min-height: 44px; padding: 0; border: 0; background: transparent; font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: var(--accent-text); text-decoration: underline; cursor: pointer">Ver todas</button>
+</div>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{historico}}" as="h" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; box-sizing: border-box; padding: 0 14px; border-top: {{h.borda}}">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 12px; background: var(--surface-tint); color: var(--accent-text)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{h.d1}}"></path><path d="{{h.d2}}"></path></svg></span>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{h.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{h.detalhe}}</span>
+</span>
+<span style="font-family: var(--font-mono); font-size: 14px; line-height: 20px; font-weight: 500; color: {{h.cor}}">{{h.valor}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+</div>
+
+<nav aria-label="Navegação principal" style="position: absolute; left: 0; right: 0; bottom: 0; height: 72px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface-raised); border-top: 1px solid var(--line)">
+<a href="mapa-logado.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg></span>Mapa</a>
+<a href="recarga.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L5 13.5h6.5L10.5 22 19 10h-6.5z"></path></svg></span>Recarga</a>
+<a href="carteira.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 800; color: var(--heading)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px; border-radius: 999px; background: var(--selected); color: var(--on-selected-accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"></path><rect x="4" y="8" width="16" height="11" rx="2.5"></rect><circle cx="16" cy="13.5" r="0.9"></circle></svg></span>Carteira</a>
+<a href="conta.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>Conta</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const linha = '1px solid var(--line)';
+const raio = 'M13 2L5 13.5h6.5L10.5 22 19 10h-6.5z';
+const qr1 = 'M5 4h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM15 4h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM5 14h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z';
+const qr2 = 'M14 14h2.5v2.5H14zM20 14v2.5M17 20h3';
+return {
+theme: this.props.theme ?? 'light',
+historico: [
+{ titulo: 'Estação [nome]', detalhe: '[dd/mm] · [18,4] kWh', valor: 'R$ [0,00]', cor: 'var(--heading)', d1: raio, d2: '', borda: 'none' },
+{ titulo: 'Saldo adicionado', detalhe: '[dd/mm] · Pix', valor: '+ R$ [0,00]', cor: 'var(--accent-text)', d1: qr1, d2: qr2, borda: linha },
+{ titulo: 'Estação [nome]', detalhe: '[dd/mm] · [18,4] kWh', valor: 'R$ [0,00]', cor: 'var(--heading)', d1: raio, d2: '', borda: linha },
+{ titulo: 'Estação [nome]', detalhe: '[dd/mm] · [18,4] kWh', valor: 'R$ [0,00]', cor: 'var(--heading)', d1: raio, d2: '', borda: linha }
+]
+};
+}
+}
+</script>
+</body>
+</html>

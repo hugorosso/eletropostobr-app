@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Conta</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 24px; display: flex; flex-direction: column; gap: 24px">
+
+<div style="display: flex; align-items: center; gap: 14px">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: var(--surface-tint); color: var(--heading); font-family: var(--font-display); font-size: 18px; font-weight: 700">[N]</span>
+<div style="min-width: 0">
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">[Nome do usuário]</h1>
+<p style="margin: 0; font-size: 13px; line-height: 19px; color: var(--ink-muted)">[email@exemplo.com.br]</p>
+</div>
+</div>
+
+<section aria-labelledby="veiculo" style="display: flex; flex-direction: column; gap: 10px">
+<h2 id="veiculo" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">MEU VEÍCULO</h2>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 72px; box-sizing: border-box; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 14px; background: var(--surface-tint); color: var(--accent-text)"><x-import component-from-global-scope="EletropostoBR.Icon" name="mobilidade"></x-import></span>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">[Marca e modelo]</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">Conector [tipo] · placa [AAA0A00]</span>
+</span>
+<button type="button" style="flex: none; min-height: 44px; padding: 0; border: 0; background: transparent; font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: var(--accent-text); text-decoration: underline; cursor: pointer">Editar</button>
+</div>
+</section>
+
+<section aria-label="Configurações e ajuda" style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{itens}}" as="i" hint-placeholder-count="4">
+<a href="{{i.href}}" style="display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; box-sizing: border-box; padding: 0 14px; border-top: {{i.borda}}; color: var(--heading); text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent-text)"><path d="{{i.d1}}"></path><path d="{{i.d2}}"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 20px; font-weight: 700">{{i.rotulo}}</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--ink-muted)"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</sc-for>
+</section>
+
+<div>
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; font-family: var(--font-sans); font-size: 14px; font-weight: 700; color: var(--danger); text-decoration: none">Sair da conta</a>
+</div>
+
+</div>
+
+<sc-if value="{{isDark}}" hint-placeholder-val="{{false}}">
+<img src="assets/logo-sem-slogan-tag-negativo.svg" alt="Eletroposto BR by EnergyClub" style="position: absolute; left: 25px; bottom: 96px; width: 340px; height: auto; display: block">
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{true}}">
+<img src="assets/logo-sem-slogan-tag-cor.svg" alt="Eletroposto BR by EnergyClub" style="position: absolute; left: 25px; bottom: 96px; width: 340px; height: auto; display: block">
+</sc-if>
+
+<nav aria-label="Navegação principal" style="position: absolute; left: 0; right: 0; bottom: 0; height: 72px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface-raised); border-top: 1px solid var(--line)">
+<a href="mapa-logado.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg></span>Mapa</a>
+<a href="recarga.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L5 13.5h6.5L10.5 22 19 10h-6.5z"></path></svg></span>Recarga</a>
+<a href="carteira.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"></path><rect x="4" y="8" width="16" height="11" rx="2.5"></rect><circle cx="16" cy="13.5" r="0.9"></circle></svg></span>Carteira</a>
+<a href="conta.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 800; color: var(--heading)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px; border-radius: 999px; background: var(--selected); color: var(--on-selected-accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>Conta</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const theme = this.props.theme ?? 'light';
+const linha = '1px solid var(--line)';
+return {
+theme: theme,
+isDark: theme === 'dark',
+isLight: theme !== 'dark',
+itens: [
+{ href: 'notificacoes.dc.html', rotulo: 'Notificações',d1: 'M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15z', d2: 'M10 20.5a2 2 0 0 0 4 0', borda: 'none' },
+{ href: 'ajuda.dc.html', rotulo: 'Ajuda e suporte',d1: 'M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z', d2: 'M9.7 9.6a2.4 2.4 0 0 1 4.6.9c0 1.6-2.3 1.9-2.3 3.5M12 16.8v.1', borda: linha },
+{ href: 'termos.dc.html', rotulo: 'Termos e privacidade',d1: 'M7 3.5h10v17l-2.5-1.6L12 20.5l-2.5-1.6L7 20.5z', d2: 'M10 8.5h4M10 12h4', borda: linha },
+{ href: 'sobre.dc.html', rotulo: 'Sobre o Eletroposto BR',d1: 'M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z', d2: 'M12 11v5M12 7.9v.1', borda: linha }
+]
+};
+}
+}
+</script>
+</body>
+</html>

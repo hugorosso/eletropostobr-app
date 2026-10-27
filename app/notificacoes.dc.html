@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Notificações</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<a href="conta.dc.html" aria-label="Voltar para a conta" style="position: absolute; left: 16px; top: 16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 76px; display: flex; flex-direction: column; gap: 18px">
+
+<div>
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">Notificações</h1>
+<p style="margin: 6px 0 0; font-size: 14px; line-height: 21px; color: var(--ink)">Escolha o que você quer receber no celular.</p>
+</div>
+
+<section aria-labelledby="g1" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="g1" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">RECARGA</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{recarga}}" as="r" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-disabled="{{r.travado}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: {{r.cursor}}">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}; opacity: {{r.opacidade}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="g2" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="g2" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">ESTAÇÕES E RESERVAS</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{estacoes}}" as="r" hint-placeholder-count="1">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-disabled="{{r.travado}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: {{r.cursor}}">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}; opacity: {{r.opacidade}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="g3" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="g3" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">CARTEIRA</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{carteira}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-disabled="{{r.travado}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: {{r.cursor}}">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}; opacity: {{r.opacidade}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="g4" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="g4" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">CONTA</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{conta}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-disabled="{{r.travado}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: {{r.cursor}}">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}; opacity: {{r.opacidade}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const padrao = { concluida: true, limite: true, problema: true, novas: true, reserva: true, saldo: true, pix: true, seguranca: true, novidades: false };
+const estado = (this.state && this.state.on) ? this.state.on : padrao;
+const linha = '1px solid var(--line)';
+const item = (id, titulo, sub, primeiro, travado) => {
+const on = !!estado[id];
+return {
+titulo: titulo,
+sub: sub,
+on: on,
+travado: !!travado,
+borda: primeiro ? 'none' : linha,
+cursor: travado ? 'not-allowed' : 'pointer',
+opacidade: travado ? 0.5 : 1,
+trilho: on ? 'var(--selected)' : 'var(--line-strong)',
+botao: on ? 'var(--on-selected)' : 'var(--surface-raised)',
+posicao: on ? '24px' : '4px',
+alternar: () => {
+if (travado) { return; }
+const prox = Object.assign({}, estado);
+prox[id] = !on;
+this.setState({ on: prox });
+}
+};
+};
+return {
+theme: this.props.theme ?? 'light',
+recarga: [
+item('concluida', 'Recarga concluída', 'Quando a recarga terminar.', true, false),
+item('limite', 'Perto de terminar', 'Quando a bateria chegar a [80]%.', false, false),
+item('problema', 'Problema na recarga', 'Se a recarga for interrompida.', false, false)
+],
+estacoes: [
+item('novas', 'Novas estações', 'Quando abrir uma estação na sua região.', true, false),
+item('reserva', 'Reserva perto de acabar', 'Quando faltarem [5] minutos.', false, false)
+],
+carteira: [
+item('saldo', 'Saldo baixo', 'Quando o saldo ficar abaixo de R$ [0,00].', true, false),
+item('pix', 'Pix confirmado', 'Quando o saldo for adicionado.', false, false)
+],
+conta: [
+item('seguranca', 'Segurança da conta', 'Sempre ativo, para proteger a sua conta.', true, true),
+item('novidades', 'Novidades do Eletroposto BR', 'Avisos de novidades e ofertas.', false, false)
+]
+};
+}
+}
+</script>
+</body>
+</html>

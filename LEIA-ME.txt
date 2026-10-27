@@ -1,0 +1,71 @@
+ELETROPOSTO BR BY ENERGYCLUB — PROTÓTIPO NAVEGÁVEL DO APP
+=========================================================
+
+Simula a navegação do app em um celular (390 × 844). São 40 telas
+ligadas entre si, com as mesmas cores, fontes e componentes do design system
+Eletroposto BR. No computador, o app aparece dentro de uma moldura de celular,
+com a lista de telas ao lado. No celular, ele ocupa a tela inteira.
+
+
+COMO PUBLICAR
+-------------
+1. Envie a pasta inteira (index.html e a pasta "app") para qualquer hospedagem
+   de sites estáticos: Netlify, Vercel, Cloudflare Pages, GitHub Pages,
+   Firebase Hosting, S3 ou o servidor da sua empresa.
+2. Acesse o endereço publicado. A página inicial é o index.html.
+
+Não precisa de servidor, banco de dados nem instalação. Funciona em qualquer
+subpasta do site, porque todos os caminhos são relativos.
+
+Para testar no seu computador, o mais seguro é usar um servidor local.
+Exemplo, dentro desta pasta:
+    python3 -m http.server 8080
+e abra http://localhost:8080
+(Abrir o index.html com duplo clique costuma funcionar no Chrome e no Edge,
+mas alguns navegadores bloqueiam esse modo. Se a tela ficar em branco, use o
+servidor local.)
+
+
+COMO NAVEGAR
+------------
+- Toque ou clique nos botões e links da tela, como em um app.
+- "Voltar" e "Reiniciar" ficam no painel (no celular, na barra do topo).
+- A lista de telas permite saltar direto para qualquer uma.
+- Link direto para uma tela: acrescente # e o nome do arquivo, sem ".dc.html".
+  Exemplos: .../index.html#estacao   .../index.html#filtros   .../index.html#conta-visitante
+- Sem # na URL, o protótipo começa pela abertura e segue sozinho para o mapa.
+
+
+O QUE ESTÁ NO PROTÓTIPO
+-----------------------
+A  Visitante: o app abre no mapa sem login. Recarga, reserva, carteira e
+   pagamentos levam à tela "Entre para continuar".
+B  Entrar, criar conta (pessoa física e jurídica) e recuperar senha.
+C  Com conta: mapa, filtros, estação, reserva por 15 min, leitura do QR Code
+   (ou código digitado), iniciar recarga, recarga em andamento e recibo,
+   além do aviso "Avisar quando abrir".
+D  Carteira: saldo, Pix e cartão.
+E  Conta: notificações, ajuda e suporte, termos e privacidade, sobre.
+
+Fora do pacote: as pranchas de referência do canvas ("Fundamentos visuais" e
+"Validação de campos e erros"), que não são telas do app.
+
+
+AJUSTES FEITOS SÓ NO PACOTE
+---------------------------
+- A abertura passa sozinha para o mapa depois de cerca de 4 segundos.
+  (Tocar na tela também avança.)
+- "Sair da conta" volta ao mapa de visitante.
+
+
+LIMITES DO PROTÓTIPO
+--------------------
+- É uma simulação visual: não há login real, pagamento, mapa ou dados.
+  Cada tela é um arquivo; o estado do usuário (visitante ou com conta) não
+  passa de uma tela para outra. Por isso existem versões separadas do mapa,
+  da estação, da conta e dos filtros para visitante e para quem tem conta.
+- Ajuda, Termos e Sobre servem aos dois perfis; o botão de voltar delas leva
+  à conta com login.
+- Valores entre colchetes, como [150] kW ou R$ [0,00], são provisórios.
+- Botões sem destino definido (por exemplo "Falar pelo WhatsApp", "Como chegar"
+  e "Baixar recibo") não fazem nada.

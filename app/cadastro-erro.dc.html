@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Criar conta com erros</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<a href="entrar.dc.html" aria-label="Voltar para entrar" style="position: absolute; left: 16px; top: 16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<a href="entrar.dc.html" style="position: absolute; right: 16px; top: 16px; display: flex; align-items: center; min-height: 44px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--accent-text); text-decoration: underline">Já tenho conta</a>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 76px; display: flex; flex-direction: column">
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">Crie sua conta.</h1>
+
+<a role="checkbox" aria-checked="false" href="cadastro-pj.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 8px; text-decoration: none; font-size: 13px; line-height: 19px; color: var(--ink)">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; box-sizing: border-box; border: 1.5px solid var(--line-strong); border-radius: 8px; background: var(--surface-raised)"></span>
+<span>Estou me cadastrando como <span style="font-weight: 700; color: var(--heading)">pessoa jurídica</span></span>
+</a>
+
+<div style="display: flex; flex-direction: column; gap: 14px; margin-top: 8px">
+
+<div class="ebr-field">
+<label class="ebr-field__label" for="nome">Nome completo</label>
+<input id="nome" class="ebr-field__input" type="text" value="[Nome Sobrenome]" autocomplete="name">
+</div>
+
+<div class="ebr-field">
+<label class="ebr-field__label" for="doc">CPF</label>
+<input id="doc" class="ebr-field__input" type="text" inputmode="numeric" value="000.000.000-0" aria-invalid="true" aria-describedby="docd" style="border-color: var(--danger); box-shadow: var(--focus-ring)">
+<div id="docd" class="ebr-field__hint" style="display: flex; gap: 6px; align-items: flex-start; color: var(--danger)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1.5px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.1"></path></svg><span>Confira o CPF. Digite só os números.</span></div>
+</div>
+
+<div class="ebr-field">
+<label class="ebr-field__label" for="email">E-mail</label>
+<input id="email" class="ebr-field__input" type="email" value="nome@email.com" autocomplete="email">
+</div>
+
+<div class="ebr-field">
+<label class="ebr-field__label" for="cel">Celular</label>
+<input id="cel" class="ebr-field__input" type="tel" value="(00) 00000-0000" autocomplete="tel">
+</div>
+
+<div class="ebr-field">
+<label class="ebr-field__label" for="senha">Senha</label>
+<input id="senha" class="ebr-field__input" type="password" value="123" aria-invalid="true" aria-describedby="senhad" style="border-color: var(--danger)" autocomplete="new-password">
+<div id="senhad" class="ebr-field__hint" style="display: flex; gap: 6px; align-items: flex-start; color: var(--danger)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1.5px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.1"></path></svg><span>Use [8] caracteres ou mais.</span></div>
+</div>
+
+</div>
+
+<div role="checkbox" aria-checked="true" style="display: flex; align-items: flex-start; gap: 12px; width: 100%; min-height: 44px; margin-top: 8px; padding: 10px 0">
+<span aria-hidden="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; box-sizing: border-box; border: 1.5px solid var(--selected); border-radius: 8px; background: var(--selected); color: var(--on-selected)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<span style="font-size: 13px; line-height: 19px; color: var(--ink)">Li e aceito os <span style="font-weight: 700; color: var(--accent-text); text-decoration: underline">termos de uso</span> e a <span style="font-weight: 700; color: var(--accent-text); text-decoration: underline">política de privacidade</span>.</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--primary ebr-btn--block" href="mapa-logado.dc.html" style="height: 48px; text-decoration: none">Criar conta</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'light' };
+}
+}
+</script>
+</body>
+</html>

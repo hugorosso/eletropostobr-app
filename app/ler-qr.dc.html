@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ler QR Code</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+@keyframes qr-varre { 0% { transform: translateY(10px); } 50% { transform: translateY(266px); } 100% { transform: translateY(10px); } }
+.qr-linha { animation: qr-varre 2600ms ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+.qr-linha { animation: none; transform: translateY(138px); }
+}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--gradient-floresta); color: var(--branco); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; align-items: center; gap: 12px; height: 44px">
+<a href="estacao.dc.html" aria-label="Fechar e voltar à estação" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.32); border-radius: 999px; background: rgba(255, 255, 255, 0.12); color: var(--branco); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<h1 style="margin: 0; flex: 1 1 auto; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--branco)">Ler QR Code</h1>
+<button type="button" aria-pressed="{{luz}}" aria-label="Lanterna" onClick="{{alternarLuz}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; padding: 0; border: 1px solid rgba(255, 255, 255, 0.32); border-radius: 999px; background: {{fundoLuz}}; color: {{corLuz}}; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"></path></svg></button>
+</div>
+
+<a href="iniciar.dc.html" aria-label="Simular a leitura do QR Code" style="position: absolute; left: 55px; top: 196px; width: 280px; height: 280px; display: block; overflow: hidden">
+<svg width="280" height="280" viewBox="0 0 280 280" fill="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; display: block">
+<g style="stroke: var(--verde-claro)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 46V20a16 16 0 0 1 16-16h26"></path>
+<path d="M234 4h26a16 16 0 0 1 16 16v26"></path>
+<path d="M276 234v26a16 16 0 0 1-16 16h-26"></path>
+<path d="M46 276H20a16 16 0 0 1-16-16v-26"></path>
+</g>
+</svg>
+<div class="qr-linha" aria-hidden="true" style="position: absolute; left: 18px; right: 18px; top: 0; height: 2px; border-radius: 999px; background: linear-gradient(90deg, rgba(78, 235, 139, 0), var(--verde-claro), rgba(78, 235, 139, 0))"></div>
+</a>
+
+<div style="position: absolute; left: 32px; right: 32px; top: 504px; text-align: center">
+<p style="margin: 0; font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--branco)">Aponte a câmera para o QR Code do carregador.</p>
+<p style="margin: 8px 0 0; font-size: 14px; line-height: 21px; color: var(--texto-sobre-floresta)">O QR Code fica [no painel do carregador].</p>
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 640px; display: flex; align-items: center; gap: 12px; box-sizing: border-box; padding: 12px 16px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius-tile); background: rgba(255, 255, 255, 0.08)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--verde-claro)"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg>
+<span style="font-size: 13px; line-height: 19px; color: var(--branco)">A leitura liga este carregador à sua conta.</span>
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: center">
+<a href="carregador-codigo.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 8px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--texto-sobre-floresta); text-decoration: underline">Não consegue ler? Digite o código do carregador</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const luz = !!(this.state && this.state.luz);
+return {
+theme: this.props.theme ?? 'light',
+luz: luz,
+fundoLuz: luz ? 'var(--branco)' : 'rgba(255, 255, 255, 0.12)',
+corLuz: luz ? 'var(--verde-floresta)' : 'var(--branco)',
+alternarLuz: () => this.setState({ luz: !luz })
+};
+}
+}
+</script>
+</body>
+</html>

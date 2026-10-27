@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Abertura do app</title>
+<script src="./support.js"></script>
+<script>setTimeout(function () { location.href = "Main.dc.html"; }, 3800);</script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+@keyframes ab-entra-cima { 0% { opacity: 0; transform: translate(22px, -22px); } 100% { opacity: 1; transform: translate(0, 0); } }
+@keyframes ab-entra-baixo { 0% { opacity: 0; transform: translate(-22px, 22px); } 100% { opacity: 1; transform: translate(0, 0); } }
+@keyframes ab-acende { 0%, 100% { filter: drop-shadow(0 0 0 rgba(78, 235, 139, 0)); } 50% { filter: drop-shadow(0 0 26px rgba(78, 235, 139, 0.55)); } }
+@keyframes ab-sobe { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes ab-corre { 0% { transform: translateX(-100%); } 100% { transform: translateX(250%); } }
+@keyframes ab-ponto { 0%, 20% { opacity: 0.2; } 50%, 80% { opacity: 1; } 100% { opacity: 0.2; } }
+.ab-cima { animation: ab-entra-cima 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 150ms both; }
+.ab-baixo { animation: ab-entra-baixo 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 550ms both; }
+.ab-simbolo { animation: ab-acende 2400ms ease-in-out 1250ms infinite; }
+.ab-logo { animation: ab-sobe 600ms cubic-bezier(0.2, 0.8, 0.2, 1) 900ms both; }
+.ab-luz { animation: ab-corre 1600ms cubic-bezier(0.45, 0, 0.25, 1) 200ms infinite; }
+.ab-ponto { display: inline-block; animation: ab-ponto 1200ms ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+.ab-cima, .ab-baixo, .ab-simbolo, .ab-logo, .ab-ponto { animation: none; }
+.ab-luz { animation: none; width: 100%; border-radius: 0; }
+}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--gradient-floresta); font-family: var(--font-sans)">
+
+<svg class="ab-simbolo" width="440" height="635" viewBox="0 0 126 182" aria-hidden="true" style="position: absolute; left: 118px; top: -30px; display: block">
+<defs>
+<linearGradient id="gigU" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8DF8BC"></stop><stop offset="1" stop-color="#2BE07A"></stop></linearGradient>
+<linearGradient id="gigL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C853"></stop><stop offset="1" stop-color="#0E9F55"></stop></linearGradient>
+</defs>
+<g transform="translate(-40 -10)">
+<path class="ab-cima" d="M130 18 L48 104 H106 Z" fill="url(#gigU)" stroke="url(#gigU)" stroke-width="12" stroke-linejoin="round"></path>
+<path class="ab-baixo" d="M94 96 H152 L70 182 Z" fill="url(#gigL)" stroke="url(#gigL)" stroke-width="12" stroke-linejoin="round"></path>
+</g>
+</svg>
+
+<img class="ab-logo" src="assets/logo-sem-slogan-tag-negativo.svg" alt="Eletroposto BR by EnergyClub" style="position: absolute; left: 25px; top: 676px; width: 340px; height: auto; display: block">
+
+<div role="status" style="position: absolute; left: 25px; bottom: 22px; display: flex; align-items: baseline; font-family: var(--font-mono); font-size: 12px; line-height: 16px; letter-spacing: 0.14em; color: var(--texto-sobre-floresta)">
+<span>CARREGANDO</span>
+<span class="ab-ponto" aria-hidden="true" style="animation-delay: 0ms">.</span>
+<span class="ab-ponto" aria-hidden="true" style="animation-delay: 200ms">.</span>
+<span class="ab-ponto" aria-hidden="true" style="animation-delay: 400ms">.</span>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(0, 200, 83, 0.22)">
+<div class="ab-luz" style="position: absolute; left: 0; top: 0; width: 40%; height: 6px; border-radius: 999px; background: var(--action); box-shadow: var(--shadow-luz)"></div>
+</div>
+
+<a href="Main.dc.html" aria-label="Continuar para o mapa" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: block"></a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

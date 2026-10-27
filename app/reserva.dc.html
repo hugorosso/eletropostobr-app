@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ponto reservado</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; align-items: center; gap: 12px; height: 44px">
+<a href="mapa-logado.dc.html" aria-label="Voltar ao mapa" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">Ponto reservado</h1>
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 84px; display: flex; flex-direction: column; gap: 16px">
+
+<div role="timer" aria-label="Tempo restante da reserva" style="box-sizing: border-box; padding: 20px 24px; border-radius: var(--radius-card); background: var(--gradient-floresta)">
+<div style="font-family: var(--font-mono); font-size: 11px; line-height: 14px; letter-spacing: 0.14em; color: var(--texto-sobre-floresta)">TEMPO RESTANTE</div>
+<div style="margin-top: 8px; font-family: var(--font-display); font-size: 56px; line-height: 1; font-weight: 800; letter-spacing: -0.04em; color: var(--branco)">[14:59]</div>
+<div aria-hidden="true" style="margin-top: 14px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.18)"><div style="width: 100%; height: 8px; border-radius: 999px; background: var(--verde-claro)"></div></div>
+<p style="margin: 12px 0 0; font-size: 13px; line-height: 19px; color: var(--texto-sobre-floresta)">Chegue até [00:00] para manter o ponto.</p>
+</div>
+
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; box-sizing: border-box; padding: 0 14px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent-text)"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">Estação [nome]</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">[Endereço da estação], [cidade]</span>
+</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; box-sizing: border-box; padding: 0 14px; border-top: 1px solid var(--line)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent-text)"><path d="M13 2L5 13.5h6.5L10.5 22 19 10h-6.5z"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">Carregador [1]</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">[Conector] · [150] kW</span>
+</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; box-sizing: border-box; padding: 0 14px; border-top: 1px solid var(--line)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent-text)"><path d="M4 11.5L20 4l-7.5 16-1.8-6.7z"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-family: var(--font-mono); font-size: 14px; line-height: 20px; font-weight: 500; color: var(--heading)">[1,2] km · [0] min</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">Até a estação</span>
+</span>
+</div>
+</div>
+
+<div style="display: flex; align-items: flex-start; gap: 12px; box-sizing: border-box; padding: 14px 16px; border-radius: var(--radius-tile); background: var(--surface-tint)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px; color: var(--accent-text)"><rect x="3.5" y="3.5" width="6" height="6" rx="1"></rect><rect x="14.5" y="3.5" width="6" height="6" rx="1"></rect><rect x="3.5" y="14.5" width="6" height="6" rx="1"></rect><path d="M14.5 14.5h2v2h-2zM18.5 14.5h2M14.5 18.5h2M18.5 18.5v2"></path></svg>
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink)">Ao chegar, leia o QR Code do carregador para iniciar a recarga.</p>
+</div>
+
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<button type="button" class="ebr-btn ebr-btn--primary ebr-btn--block" style="height: 48px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5L20 4l-7.5 16-1.8-6.7z"></path></svg>Traçar rota</button>
+<a class="ebr-btn ebr-btn--outline ebr-btn--block" href="ler-qr.dc.html" style="height: 48px; margin-top: 8px; text-decoration: none">Já cheguei · ler QR Code</a>
+<a href="estacao.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 4px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--danger); text-decoration: underline">Cancelar reserva</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'light' };
+}
+}
+</script>
+</body>
+</html>

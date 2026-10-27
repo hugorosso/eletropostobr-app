@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Digitar o código do carregador</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; align-items: center; gap: 12px; height: 44px">
+<a href="ler-qr.dc.html" aria-label="Voltar para ler o QR Code" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">Digitar o código</h1>
+</div>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 84px; display: flex; flex-direction: column; gap: 20px">
+
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink)">Digite o código impresso no carregador. Ele liga o carregador à sua conta, como a leitura do QR Code.</p>
+
+<x-import component-from-global-scope="EletropostoBR.Field" label="Código do carregador" placeholder="[AB-1234]" autocomplete="off"></x-import>
+
+<section aria-labelledby="onde" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="onde" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">ONDE ENCONTRAR</h2>
+<div role="img" aria-label="Exemplo de etiqueta do carregador, com o QR Code e o código logo abaixo" style="display: flex; flex-direction: column; align-items: center; gap: 12px; box-sizing: border-box; padding: 20px; border-radius: var(--radius-tile); background: var(--surface-tint)">
+<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--heading)"><rect x="3.5" y="3.5" width="6" height="6" rx="1"></rect><rect x="14.5" y="3.5" width="6" height="6" rx="1"></rect><rect x="3.5" y="14.5" width="6" height="6" rx="1"></rect><path d="M14.5 14.5h2v2h-2zM18.5 14.5h2M14.5 18.5h2M18.5 18.5v2"></path></svg>
+<span style="font-family: var(--font-mono); font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: 0.14em; color: var(--heading)">[AB-1234]</span>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 16px; color: var(--ink-muted)">Exemplo de etiqueta. O código fica [abaixo do QR Code, no painel do carregador].</p>
+</section>
+
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--primary ebr-btn--block" href="iniciar.dc.html" style="height: 48px; text-decoration: none">Continuar</a>
+<a href="ler-qr.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 4px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--accent-text); text-decoration: underline">Prefiro ler o QR Code</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'light' };
+}
+}
+</script>
+</body>
+</html>

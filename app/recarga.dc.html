@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Recarga em andamento</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; flex-direction: column; gap: 2px">
+<h1 style="margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">Recarga em andamento</h1>
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink-muted)">Estação [nome] · Carregador [1]</p>
+</div>
+
+<section aria-label="Estado da recarga" style="position: absolute; left: 16px; right: 16px; top: 84px; box-sizing: border-box; padding: 24px; border-radius: var(--radius-panel); background: var(--gradient-floresta)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-family: var(--font-mono); font-size: 10px; line-height: 14px; letter-spacing: 0.14em; color: var(--verde-claro)">ESTAÇÃO [NOME] · CARREGADOR [1]</span>
+<span style="flex: none; padding: 5px 10px; border-radius: 999px; background: var(--verde-claro); color: var(--verde-floresta); font-size: 11px; line-height: 14px; font-weight: 700">Carregando</span>
+</div>
+<div style="margin-top: 20px; display: flex; align-items: baseline; gap: 4px; color: var(--branco)">
+<span style="font-family: var(--font-display); font-size: 88px; line-height: 88px; font-weight: 800; letter-spacing: -0.04em">[78]</span>
+<span style="font-family: var(--font-display); font-size: 32px; line-height: 36px; font-weight: 600; color: var(--texto-sobre-floresta)">%</span>
+</div>
+<div style="margin-top: 4px; font-size: 14px; line-height: 20px; color: var(--texto-sobre-floresta)">Carga da bateria</div>
+<div role="progressbar" aria-label="Carga da bateria" aria-valuemin="0" aria-valuemax="100" aria-valuenow="78" style="margin-top: 20px; height: 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.16); overflow: hidden">
+<div style="width: 78%; height: 100%; border-radius: 999px; background: var(--gradient-corrente)"></div>
+</div>
+<div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(197, 227, 214, 0.3); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div>
+<div style="font-family: var(--font-mono); font-size: 10px; line-height: 14px; letter-spacing: 0.14em; color: var(--texto-sobre-floresta)">POTÊNCIA</div>
+<div style="margin-top: 4px; font-family: var(--font-mono); font-size: 16px; line-height: 24px; font-weight: 500; color: var(--branco)">[150] kW</div>
+</div>
+<div>
+<div style="font-family: var(--font-mono); font-size: 10px; line-height: 14px; letter-spacing: 0.14em; color: var(--texto-sobre-floresta)">ENERGIA</div>
+<div style="margin-top: 4px; font-family: var(--font-mono); font-size: 16px; line-height: 24px; font-weight: 500; color: var(--branco)">[18,4] kWh</div>
+</div>
+<div>
+<div style="font-family: var(--font-mono); font-size: 10px; line-height: 14px; letter-spacing: 0.14em; color: var(--texto-sobre-floresta)">FALTAM</div>
+<div style="margin-top: 4px; font-family: var(--font-mono); font-size: 16px; line-height: 24px; font-weight: 500; color: var(--branco)">[8] min</div>
+</div>
+</div>
+</section>
+
+<div style="position: absolute; left: 16px; right: 16px; top: 410px; display: flex; flex-direction: column; gap: 12px">
+<section aria-labelledby="custo" style="box-sizing: border-box; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<h2 id="custo" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">CUSTO ATÉ AGORA</h2>
+<div style="margin-top: 4px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+<span style="font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.03em; color: var(--heading)">R$ [0,00]</span>
+<span style="font-family: var(--font-mono); font-size: 13px; line-height: 19px; color: var(--ink-muted)">R$ [0,00]/kWh</span>
+</div>
+</section>
+<section style="display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box; padding: 12px 12px 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<span style="min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">Parar automaticamente em</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">Você pode mudar durante a recarga.</span>
+</span>
+<button type="button" class="ebr-btn ebr-btn--outline ebr-btn--sm" aria-label="Alterar meta de carga, atual [80]%" style="flex: none; min-width: 76px">[80]%</button>
+</section>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 72px; box-sizing: border-box; padding: 12px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--outline ebr-btn--block" href="recibo.dc.html" style="height: 48px; text-decoration: none">Encerrar recarga</a>
+</div>
+
+<nav aria-label="Navegação principal" style="position: absolute; left: 0; right: 0; bottom: 0; height: 72px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface-raised); border-top: 1px solid var(--line)">
+<a href="mapa-logado.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.4"></circle></svg></span>Mapa</a>
+<a href="recarga.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 800; color: var(--heading)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px; border-radius: 999px; background: var(--selected); color: var(--on-selected-accent)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L5 13.5h6.5L10.5 22 19 10h-6.5z"></path></svg></span>Recarga</a>
+<a href="carteira.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"></path><rect x="4" y="8" width="16" height="11" rx="2.5"></rect><circle cx="16" cy="13.5" r="0.9"></circle></svg></span>Carteira</a>
+<a href="conta.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--ink-muted)">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>Conta</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'light' };
+}
+}
+</script>
+</body>
+</html>

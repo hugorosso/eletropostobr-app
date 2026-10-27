@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Filtros do mapa (visitante)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="ds/eletroposto-br/components/bundle.css">
+<script src="ds/eletroposto-br/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-theme="{{theme}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: var(--surface); color: var(--ink); font-family: var(--font-sans)">
+
+<div style="position: absolute; left: 16px; right: 16px; top: 16px; display: flex; align-items: center; gap: 12px; height: 44px">
+<a href="Main.dc.html" aria-label="Fechar filtros e voltar ao mapa" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface-raised); color: var(--heading); text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<h1 style="margin: 0; flex: 1 1 auto; font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; color: var(--heading)">Filtros</h1>
+<button type="button" onClick="{{limpar}}" style="flex: none; min-height: 44px; padding: 0 4px; border: 0; background: transparent; font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--accent-text); text-decoration: underline; cursor: pointer">Limpar</button>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; top: 76px; bottom: 77px; overflow-y: auto; box-sizing: border-box; padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 20px">
+
+<section aria-labelledby="f-ordem" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-ordem" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">ORDENAR POR</h2>
+<div role="radiogroup" aria-labelledby="f-ordem" style="display: flex; gap: 8px">
+<sc-for list="{{ordem}}" as="c" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{c.sel}}" onClick="{{c.escolher}}" style="flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 4px; box-sizing: border-box; border: {{c.borda}}; border-radius: var(--radius-pill); background: {{c.fundo}}; color: {{c.cor}}; font-family: var(--font-sans); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{c.rotulo}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="f-disp" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-disp" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">DISPONIBILIDADE</h2>
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{disponibilidade}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px; border-top: {{r.borda}}">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="f-pot" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-pot" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">POTÊNCIA MÍNIMA</h2>
+<div role="radiogroup" aria-labelledby="f-pot" style="display: flex; gap: 8px">
+<sc-for list="{{potencia}}" as="c" hint-placeholder-count="4">
+<button type="button" role="radio" aria-checked="{{c.sel}}" onClick="{{c.escolher}}" style="flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 4px; box-sizing: border-box; border: {{c.borda}}; border-radius: var(--radius-pill); background: {{c.fundo}}; color: {{c.cor}}; font-family: var(--font-sans); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{c.rotulo}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="f-con" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-con" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">CONECTOR</h2>
+<sc-if value="{{logado}}" hint-placeholder-val="{{false}}">
+<div style="border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-raised)">
+<sc-for list="{{meuConector}}" as="r" hint-placeholder-count="1">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 14px">
+<span style="flex: 1 1 auto; min-width: 0">
+<span style="display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--heading)">{{r.titulo}}</span>
+<span style="display: block; font-size: 12px; line-height: 16px; color: var(--ink-muted)">{{r.sub}}</span>
+</span>
+<button type="button" role="switch" aria-checked="{{r.on}}" aria-label="{{r.titulo}}" onClick="{{r.alternar}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 60px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer">
+<span aria-hidden="true" style="position: relative; display: block; width: 52px; height: 32px; border-radius: 999px; background: {{r.trilho}}">
+<span style="position: absolute; top: 4px; left: {{r.posicao}}; display: block; width: 24px; height: 24px; border-radius: 999px; background: {{r.botao}}"></span>
+</span>
+</button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<div role="group" aria-labelledby="f-con" style="display: flex; gap: 8px">
+<sc-for list="{{conectores}}" as="c" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{c.sel}}" onClick="{{c.escolher}}" style="flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 4px; box-sizing: border-box; border: {{c.borda}}; border-radius: var(--radius-pill); background: {{c.fundo}}; color: {{c.cor}}; font-family: var(--font-sans); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{c.rotulo}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="f-dist" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-dist" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">DISTÂNCIA MÁXIMA</h2>
+<div role="radiogroup" aria-labelledby="f-dist" style="display: flex; gap: 8px">
+<sc-for list="{{distancia}}" as="c" hint-placeholder-count="4">
+<button type="button" role="radio" aria-checked="{{c.sel}}" onClick="{{c.escolher}}" style="flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 4px; box-sizing: border-box; border: {{c.borda}}; border-radius: var(--radius-pill); background: {{c.fundo}}; color: {{c.cor}}; font-family: var(--font-sans); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{c.rotulo}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="f-com" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="f-com" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-text)">NO LOCAL</h2>
+<div role="group" aria-labelledby="f-com" style="display: flex; gap: 8px">
+<sc-for list="{{comodidades}}" as="c" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{c.sel}}" onClick="{{c.escolher}}" style="flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 4px; box-sizing: border-box; border: {{c.borda}}; border-radius: var(--radius-pill); background: {{c.fundo}}; color: {{c.cor}}; font-family: var(--font-sans); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{c.rotulo}}</button>
+</sc-for>
+</div>
+</section>
+
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 12px 16px 16px; background: var(--surface); border-top: 1px solid var(--line)">
+<a class="ebr-btn ebr-btn--primary ebr-btn--block" href="Main.dc.html" style="height: 48px; text-decoration: none">Ver [12] estações</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Tema"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const LOGADO = false;
+const padrao = { ordem: 'proxima', pot: 'qualquer', dist: 'qualquer', con: { c1: false, c2: false, c3: false }, loc: { alim: false, banh: false, cob: false }, sw: { disp: true, aberta: false, meu: false } };
+const vazio = { ordem: 'proxima', pot: 'qualquer', dist: 'qualquer', con: { c1: false, c2: false, c3: false }, loc: { alim: false, banh: false, cob: false }, sw: { disp: false, aberta: false, meu: false } };
+const f = (this.state && this.state.f) ? this.state.f : padrao;
+const copia = (o) => JSON.parse(JSON.stringify(o));
+const salvar = (p) => this.setState({ f: p });
+const linha = '1px solid var(--line)';
+const chip = (sel, rotulo, escolher) => ({
+rotulo: rotulo,
+sel: sel,
+borda: sel ? '1.5px solid var(--selected)' : '1.5px solid var(--line-strong)',
+fundo: sel ? 'var(--selected)' : 'var(--surface-raised)',
+cor: sel ? 'var(--on-selected)' : 'var(--heading)',
+escolher: escolher
+});
+const unica = (campo, opcoes) => opcoes.map((o) => chip(f[campo] === o[0], o[1], () => { const p = copia(f); p[campo] = o[0]; salvar(p); }));
+const multi = (campo, opcoes) => opcoes.map((o) => chip(!!f[campo][o[0]], o[1], () => { const p = copia(f); p[campo][o[0]] = !p[campo][o[0]]; salvar(p); }));
+const chave = (id, titulo, sub, primeiro) => {
+const on = !!f.sw[id];
+return {
+titulo: titulo,
+sub: sub,
+on: on,
+borda: primeiro ? 'none' : linha,
+trilho: on ? 'var(--selected)' : 'var(--line-strong)',
+botao: on ? 'var(--on-selected)' : 'var(--surface-raised)',
+posicao: on ? '24px' : '4px',
+alternar: () => { const p = copia(f); p.sw[id] = !on; salvar(p); }
+};
+};
+return {
+theme: this.props.theme ?? 'light',
+logado: LOGADO,
+limpar: () => salvar(copia(vazio)),
+ordem: unica('ordem', [['proxima', 'Mais próxima'], ['rapida', 'Mais rápida'], ['preco', 'Menor preço']]),
+disponibilidade: [
+chave('disp', 'Disponível agora', 'Com ao menos um carregador livre.', true),
+chave('aberta', 'Aberta agora', 'Dentro do horário de funcionamento.', false)
+],
+potencia: unica('pot', [['qualquer', 'Qualquer'], ['p50', '[50] kW'], ['p100', '[100] kW'], ['p150', '[150] kW']]),
+meuConector: [chave('meu', 'Usar o conector do meu veículo', '[Marca e modelo] · [tipo]', true)],
+conectores: multi('con', [['c1', '[Conector 1]'], ['c2', '[Conector 2]'], ['c3', '[Conector 3]']]),
+distancia: unica('dist', [['qualquer', 'Qualquer'], ['d2', '[2] km'], ['d5', '[5] km'], ['d10', '[10] km']]),
+comodidades: multi('loc', [['alim', 'Alimentação'], ['banh', 'Banheiro'], ['cob', 'Coberta']])
+};
+}
+}
+</script>
+</body>
+</html>
