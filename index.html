@@ -3,69 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Eletroposto BR by EnergyClub — protótipo do app</title>
-<meta name="description" content="Protótipo navegável do app Eletroposto BR by EnergyClub, para simular a navegação em celular.">
 <meta name="theme-color" content="#04271f">
+<meta property="og:title" content="Protótipo Eletroposto BR by EnergyClub">
+<meta property="og:description" content="Protótipo navegável do app Eletroposto BR by EnergyClub, para simular o uso em celular.">
 <link rel="icon" type="image/svg+xml" href="app/assets/icone-app-escuro.svg">
+<title>Protótipo Eletroposto BR by EnergyClub</title>
+<meta name="description" content="Protótipo navegável do app Eletroposto BR by EnergyClub, para simular o uso em celular.">
 <link rel="stylesheet" href="app/tokens.css">
 <style>
+/* Layout: painel de telas (360px) à esquerda e o celular 390×844 escalado à direita.
+   No celular, o app ocupa a tela inteira e a lista abre como gaveta. */
+:root {
+  --bg: var(--verde-noite, #04271f);
+  --fg: var(--branco, #ffffff);
+  --fg-soft: var(--texto-sobre-floresta, #c5e3d6);
+  --accent: var(--verde-claro, #4eeb8b);
+  --linha: rgba(197, 227, 214, 0.16);
+  --linha-forte: rgba(197, 227, 214, 0.45);
+  --moldura: #07130f;
+  --tela-fundo: var(--surface, #f3f7f5);
+  color-scheme: dark;
+}
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
+html, body { height: 100%; }
 body {
-  height: 100dvh;
+  margin: 0;
   display: flex;
   overflow: hidden;
-  background: var(--verde-noite);
-  color: var(--branco);
-  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans, system-ui, sans-serif);
 }
 button { font-family: inherit; }
-:focus-visible { outline: 2px solid var(--verde-claro); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* painel lateral */
 .painel {
   flex: none;
   width: 360px;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 28px 24px 24px;
-  border-right: 1px solid rgba(197, 227, 214, 0.16);
-  background: var(--verde-noite);
+  border-right: 1px solid var(--linha);
+  background: var(--bg);
 }
 .marca { display: flex; align-items: center; gap: 12px; }
 .marca img { flex: none; width: 48px; height: 48px; display: block; }
-.eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 14px; letter-spacing: 0.14em; color: var(--verde-claro); }
-.marca h1 { margin: 4px 0 0; font-family: var(--font-display); font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--branco); }
+.eyebrow { font-family: var(--font-mono, ui-monospace, monospace); font-size: 11px; line-height: 14px; letter-spacing: 0.14em; color: var(--accent); }
+.marca h1 { margin: 4px 0 0; font-family: var(--font-display, var(--font-sans)); font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance; }
 .acoes { display: flex; gap: 8px; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 44px; padding: 0 18px;
-  border: 1.5px solid rgba(197, 227, 214, 0.45); border-radius: 999px;
-  background: transparent; color: var(--branco);
-  font-size: 13px; line-height: 18px; font-weight: 700; white-space: nowrap; cursor: pointer;
+  border: 1.5px solid var(--linha-forte); border-radius: 999px;
+  background: transparent; color: var(--fg);
+  font-size: 13px; line-height: 18px; font-weight: 700; white-space: nowrap; cursor: pointer; text-decoration: none;
 }
 .btn:hover { background: rgba(255, 255, 255, 0.08); }
 .btn svg { flex: none; }
-.dica { margin: 0; font-size: 13px; line-height: 19px; color: var(--texto-sobre-floresta); }
-#lista { display: flex; flex-direction: column; gap: 16px; }
-.grupo h2 { margin: 0 0 4px; font-size: 13px; line-height: 18px; font-weight: 800; color: var(--verde-claro); }
+.dica { margin: 0; font-size: 13px; line-height: 19px; color: var(--fg-soft); }
+#lista { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+.grupo h2 { margin: 0 0 4px; font-size: 13px; line-height: 18px; font-weight: 800; color: var(--accent); }
 .grupo ul { list-style: none; margin: 0; padding: 0; }
 .item {
   display: block; width: 100%; min-height: 44px; padding: 8px 12px;
   border: 0; border-radius: 12px; background: transparent;
-  color: var(--texto-sobre-floresta); text-align: left;
+  color: var(--fg-soft); text-align: left;
   font-size: 14px; line-height: 20px; font-weight: 600; cursor: pointer;
 }
 .item:hover { background: rgba(255, 255, 255, 0.07); }
-.item[aria-current="true"] { background: rgba(78, 235, 139, 0.16); color: var(--branco); font-weight: 800; }
-.rodape { margin: 0; font-size: 12px; line-height: 16px; color: var(--texto-sobre-floresta); }
-.fechar { display: none; }
+.item[aria-current="true"] { background: rgba(78, 235, 139, 0.16); color: var(--fg); font-weight: 800; }
+.rodape { margin: 0; font-size: 12px; line-height: 16px; color: var(--fg-soft); }
 
 /* palco */
 .palco {
+  position: relative;
   flex: 1 1 auto; min-width: 0; height: 100%;
   display: flex; align-items: center; justify-content: center;
   padding: 24px;
@@ -75,62 +90,47 @@ button { font-family: inherit; }
   padding: 12px;
   border: 1.5px solid rgba(197, 227, 214, 0.3);
   border-radius: 56px;
-  background: #07130f;
+  background: var(--moldura);
 }
-.tela { position: relative; overflow: hidden; border-radius: 44px; background: var(--surface); }
+.tela { position: relative; overflow: hidden; border-radius: 44px; background: var(--tela-fundo); }
 .tela iframe {
   position: absolute; left: 0; top: 0;
   width: 390px; height: 844px; border: 0;
   transform-origin: 0 0;
-  background: var(--surface);
+  background: var(--tela-fundo);
 }
 
-/* barra superior (só no celular) */
-.barra { display: none; }
+/* aviso, só aparece se a moldura não carregar */
+.alerta {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
+  z-index: 5;
+  display: flex; align-items: center; gap: 12px;
+  max-width: calc(100% - 24px); padding: 8px 8px 8px 16px;
+  border: 1px solid var(--linha-forte); border-radius: 999px;
+  background: var(--bg); color: var(--fg-soft);
+  font-size: 13px; line-height: 18px;
+}
 
+/* celular e tablet: só o app, sem painel nem barra */
 @media (max-width: 820px) {
-  body { flex-direction: column; }
-  .barra {
-    flex: none; display: flex; align-items: center; gap: 8px;
-    padding: 4px 12px; padding-top: calc(4px + env(safe-area-inset-top));
-    border-bottom: 1px solid rgba(197, 227, 214, 0.16);
-    background: var(--verde-noite);
-  }
-  .barra .btn { min-height: 44px; padding: 0 14px; }
-  .barra .esp { flex: 1 1 auto; }
-  .painel {
-    position: fixed; inset: 0; z-index: 20; width: auto; height: auto;
-    border-right: 0;
-    visibility: hidden; transform: translateY(100%);
-    transition: transform 0.2s ease, visibility 0s linear 0.2s;
-  }
-  .painel.aberto { visibility: visible; transform: none; transition: transform 0.2s ease; }
-  .fechar { display: inline-flex; align-self: flex-start; }
-  .palco { flex: 1 1 auto; height: auto; padding: 12px; }
+  .painel { display: none; }
+  .palco { padding: 12px; }
 }
 @media (max-width: 520px) {
   .palco { padding: 0; }
   .aparelho { padding: 0; border: 0; border-radius: 0; background: none; }
   .tela { border-radius: 0; }
+  .alerta { flex-direction: column; align-items: stretch; border-radius: 20px; padding: 12px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .painel { transition: none; }
-}
+</style>
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 
-<header class="barra">
-  <button type="button" class="btn" id="abrirLista" aria-controls="painel" aria-expanded="false">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>Telas
-  </button>
-  <span class="esp"></span>
-  <button type="button" class="btn" id="voltarB">Voltar</button>
-  <button type="button" class="btn" id="reiniciarB">Reiniciar</button>
-</header>
-
 <aside class="painel" id="painel" aria-label="Lista de telas do protótipo">
-  <button type="button" class="btn fechar" id="fechar">Fechar lista</button>
   <div class="marca">
     <img src="app/assets/icone-app-escuro.svg" alt="">
     <div>
@@ -144,15 +144,18 @@ button { font-family: inherit; }
   </div>
   <p class="dica">Toque na tela do celular como em um app. Para saltar para qualquer tela, escolha na lista.</p>
   <nav id="lista" aria-label="Telas"></nav>
-  <p class="rodape">Valores entre colchetes, como [150] kW, são provisórios.</p>
+  <p class="rodape">Simulação visual, sem login, pagamento ou mapa reais. Valores entre colchetes, como [150] kW, são provisórios.</p>
 </aside>
 
-<noscript><p style="padding:24px">Este protótipo precisa de JavaScript para funcionar.</p></noscript>
 <main class="palco" id="palco">
   <div class="aparelho" id="aparelho">
     <div class="tela" id="telaBox">
       <iframe id="tela" title="Protótipo do app Eletroposto BR by EnergyClub" src="about:blank"></iframe>
     </div>
+  </div>
+  <div class="alerta" id="alerta" role="status" hidden>
+    <span>O celular não apareceu aqui.</span>
+    <a class="btn" href="app/abertura.dc.html">Abrir em tela cheia</a>
   </div>
 </main>
 
@@ -168,7 +171,7 @@ button { font-family: inherit; }
   var palco = document.getElementById('palco');
   var painel = document.getElementById('painel');
   var lista = document.getElementById('lista');
-  var abrir = document.getElementById('abrirLista');
+  var alerta = document.getElementById('alerta');
 
   /* lista de telas, por grupo */
   var grupoAtual = null, ul = null;
@@ -188,7 +191,7 @@ button { font-family: inherit; }
     b.type = 'button'; b.className = 'item';
     b.setAttribute('data-arq', t.arquivo);
     b.textContent = t.titulo;
-    b.addEventListener('click', function () { ir(t.arquivo); fecharLista(); });
+    b.addEventListener('click', function () { ir(t.arquivo); });
     li.appendChild(b); ul.appendChild(li);
   });
 
@@ -208,30 +211,28 @@ button { font-family: inherit; }
     for (var i = 0; i < itens.length; i++) {
       var on = itens[i].getAttribute('data-arq') === arq;
       if (on) itens[i].setAttribute('aria-current', 'true'); else itens[i].removeAttribute('aria-current');
-      if (on && !painel.classList.contains('aberto') && itens[i].scrollIntoView) {
+      if (on && itens[i].scrollIntoView) {
         try { itens[i].scrollIntoView({ block: 'nearest' }); } catch (e) {}
       }
     }
-    var tela = TELAS.filter(function (t) { return t.arquivo === arq; })[0];
-    document.title = (tela ? tela.titulo + ' — ' : '') + 'Eletroposto BR by EnergyClub (protótipo)';
     try { history.replaceState(null, '', '#' + arq.replace(/\.dc\.html$/, '')); } catch (e) {}
   }
-  frame.addEventListener('load', function () { marca(arquivoAtual()); });
+  var carregou = false;
+  frame.addEventListener('load', function () {
+    if (frame.getAttribute('src') === 'about:blank') return;
+    carregou = true;
+    marca(arquivoAtual());
+  });
   setInterval(function () { marca(arquivoAtual()); }, 400);
+
+  /* se a moldura não carregar neste ambiente, oferece abrir a tela cheia */
+  setTimeout(function () { if (!carregou || arquivoAtual() === null) alerta.hidden = false; }, 5000);
 
   /* ações */
   function voltar() { try { frame.contentWindow.history.back(); } catch (e) { history.back(); } }
-  function reiniciar() { ultimo = null; ir(INICIO); fecharLista(); }
+  function reiniciar() { ultimo = null; ir(INICIO); }
   document.getElementById('voltar').addEventListener('click', voltar);
-  document.getElementById('voltarB').addEventListener('click', voltar);
   document.getElementById('reiniciar').addEventListener('click', reiniciar);
-  document.getElementById('reiniciarB').addEventListener('click', reiniciar);
-
-  function abrirLista() { painel.classList.add('aberto'); abrir.setAttribute('aria-expanded', 'true'); }
-  function fecharLista() { painel.classList.remove('aberto'); abrir.setAttribute('aria-expanded', 'false'); }
-  abrir.addEventListener('click', abrirLista);
-  document.getElementById('fechar').addEventListener('click', fecharLista);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharLista(); });
 
   /* escala: o celular de 390 × 844 cabe no espaço disponível */
   function px(v) { return parseFloat(v) || 0; }
@@ -250,11 +251,18 @@ button { font-family: inherit; }
   window.addEventListener('orientationchange', ajusta);
   ajusta();
 
-  /* primeira tela: #estacao abre direto na estação; sem hash, começa pela abertura */
-  var h = (location.hash || '').replace(/^#/, '');
-  var inicial = h && existe(h + '.dc.html') ? h + '.dc.html' : INICIO;
-  ir(inicial);
+  /* link direto: #estacao abre na estação; sem hash, começa pela abertura */
+  function doHash() {
+    var h = (location.hash || '').replace(/^#/, '');
+    return h && existe(h + '.dc.html') ? h + '.dc.html' : null;
+  }
+  window.addEventListener('hashchange', function () {
+    var arq = doHash();
+    if (arq && arq !== ultimo) ir(arq);
+  });
+  ir(doHash() || INICIO);
 })();
 </script>
+
 </body>
 </html>
